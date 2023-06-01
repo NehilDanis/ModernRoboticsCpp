@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.20)
 
 project(ModernRoboticsCpp VERSION 0.0.1)
 
+find_package(Eigen3)
+
 add_library(${PROJECT_NAME} STATIC)
 
 target_sources(${PROJECT_NAME}
@@ -14,6 +16,7 @@ PRIVATE
     # where the library itself will look for its internal headers
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${CMAKE_CURRENT_SOURCE_DIR}/include
+    Eigen3::Eigen
 PUBLIC
     # where external projects will look for the library's public headers
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
