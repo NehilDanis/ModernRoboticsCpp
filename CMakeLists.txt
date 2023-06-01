@@ -1,12 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(ModernRoboticsCpp VERSION 0.1)
-
-if (NOT CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-    message(STATUS "This project has a top-level one called [${CMAKE_PROJECT_NAME}]")
-else()
-    message(STATUS "This project is a top-level one")
-endif()
+project(ModernRoboticsCpp VERSION 0.0.1)
 
 add_library(${PROJECT_NAME} STATIC)
 
@@ -21,8 +15,6 @@ PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 PUBLIC
-    # where top-level project will look for the library's public headers
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     # where external projects will look for the library's public headers
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
@@ -75,7 +67,7 @@ install(TARGETS ${PROJECT_NAME}
 # generate and install export file
 install(EXPORT "${PROJECT_NAME}Targets"
     FILE "${PROJECT_NAME}Targets.cmake"
-    NAMESPACE ${namespace}::
+    NAMESPACE mrCpp::
     DESTINATION cmake
 )
 
@@ -101,5 +93,5 @@ install(FILES
 # generate the export targets for the build tree
 export(EXPORT "${PROJECT_NAME}Targets"
     FILE "${CMAKE_CURRENT_BINARY_DIR}/cmake/${PROJECT_NAME}Targets.cmake"
-    NAMESPACE ${namespace}::
+    NAMESPACE mrCpp::
 )
